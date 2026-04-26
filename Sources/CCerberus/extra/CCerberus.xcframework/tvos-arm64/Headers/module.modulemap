@@ -1,0 +1,12 @@
+module CCerberus {
+    umbrella "openssl"
+    export *
+    module * { export * }
+
+    exclude header "openssl/span.h"
+    exclude header "openssl/pki/certificate.h"
+    exclude header "openssl/pki/ocsp.h"
+    exclude header "openssl/pki/signature_verify_cache.h"
+    exclude header "openssl/pki/verify.h"
+    exclude header "openssl/pki/verify_error.h"
+}

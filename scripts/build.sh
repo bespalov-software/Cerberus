@@ -147,12 +147,16 @@ build_platform() {
     echo "✓ Built $platform → $install_dir/lib/{libcrypto.a,libssl.a}"
 }
 
-# Combine libcrypto.a + libssl.a → libCCerberus.a for one arch slice.
+# Combine libcrypto.a + libssl.a → libCCerberus.a for one arch slice, then
+# `strip -S` to drop debug symbols (~7× size reduction; 59MB → 8.5MB per slice).
+# 2>/dev/null suppresses the noisy per-object "already stripped" warnings for
+# arch-specific .S files that are no-ops on this slice.
 combine_archive() {
     local platform="$1" out="$2"
     libtool -static -o "$out" \
         "$BUILD_ROOT/$platform/install/lib/libcrypto.a" \
         "$BUILD_ROOT/$platform/install/lib/libssl.a"
+    strip -S "$out" 2>/dev/null || true
 }
 
 # Build one xcframework slice. If $2 is empty we copy the single-arch combined

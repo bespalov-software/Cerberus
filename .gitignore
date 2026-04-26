@@ -11,8 +11,6 @@ DerivedData/
 # BoringSSL per-platform build trees (large, reproducible from submodule)
 Sources/CCerberus/vendor/build/
 
-# Generated headers + xcframework — produced by `make create-xcframework`
-# Comment out the next two lines if you want to commit the prebuilt xcframework
-# so consumers don't need to rebuild BoringSSL themselves.
-Sources/CCerberus/extra/CCerberus.xcframework/
-Sources/CCerberus/extra/headers/
+# extra/CCerberus.xcframework + extra/headers/ ARE committed — SwiftPM consumers
+# need them to be present in the repo when resolving `binaryTarget(path:)`.
+# Stripped via `strip -S` they total ~75MB (matches Kalliope's pattern).
