@@ -1,0 +1,18 @@
+.DS_Store
+/.build
+/Packages
+xcuserdata/
+DerivedData/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc
+.venv/
+
+# BoringSSL per-platform build trees (large, reproducible from submodule)
+Sources/CCerberus/vendor/build/
+
+# Generated headers + xcframework — produced by `make create-xcframework`
+# Comment out the next two lines if you want to commit the prebuilt xcframework
+# so consumers don't need to rebuild BoringSSL themselves.
+Sources/CCerberus/extra/CCerberus.xcframework/
+Sources/CCerberus/extra/headers/
