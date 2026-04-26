@@ -9,14 +9,21 @@ Swift package wrapping BoringSSL as an xcframework for Apple platforms.
 
 ## Build
 
-The xcframework is not committed. Build it locally:
+The prebuilt **`CCerberus.xcframework` is committed** (~90MB stripped, all 10 slices) so consumers don't need to rebuild BoringSSL. Just:
+
+```bash
+swift build
+swift test
+```
+
+To rebuild from source (after bumping the boringssl submodule, or to verify the binary):
 
 ```bash
 git submodule update --init --recursive
 make build-quick           # iOS arm64 + iOS sim arm64 + macOS arm64 (~30 min)
 # OR
 make build-all             # all 16 Apple slices (~3 hours)
-make create-xcframework
+make create-xcframework    # bundles + strips → 90MB xcframework
 swift test
 ```
 
